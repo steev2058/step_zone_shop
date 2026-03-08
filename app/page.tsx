@@ -79,23 +79,7 @@ export default function HomePage() {
 
   return (
     <main>
-      <section id="home" className="relative overflow-hidden bg-brandBlack text-white">
-        <div className="container-shell grid min-h-[76vh] items-center gap-10 py-16 md:grid-cols-2">
-          <div className="fade-up">
-            <p className="mb-3 text-xs uppercase tracking-[0.25em] text-white/60">STEPZONE / S23</p>
-            <h1 className="text-5xl font-extrabold leading-[0.95] sm:text-6xl md:text-7xl">JUST<br />STEP IN.</h1>
-            <p className="mt-6 max-w-md text-sm text-white/75">{t('premiumSneakers')} — UAE imports curated for Syria.</p>
-            <a href="#shop" className="btn-primary mt-8">{t('shopNow')}</a>
-          </div>
-          <div className="fade-up">
-            <div className="card overflow-hidden bg-white/95">
-              <img src="/products/p5.svg" alt="Hero sneaker" className="h-[420px] w-full object-cover" loading="eager" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="new" className="container-shell py-12">
+      <section id="home" className="container-shell py-12">
         <div className="mb-6 flex items-center justify-between">
           <h2 className="text-3xl font-extrabold tracking-tight">{t('newCollection')}</h2>
         </div>
