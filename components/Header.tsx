@@ -9,10 +9,7 @@ export default function Header() {
   const { count } = useCart();
 
   const links = [
-    { href: '#home', label: t('home') },
-    { href: '#shop', label: t('shop') },
-    { href: '#new', label: t('newCollection') },
-    { href: '#contact', label: t('contact') }
+    { href: '#home', label: t('home') }
   ];
 
   return (
