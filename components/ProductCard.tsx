@@ -18,6 +18,7 @@ export default function ProductCard({ product }: { product: Product }) {
       </Link>
       <div className="p-5">
         <h3 className="text-base font-semibold tracking-tight">{product.name}</h3>
+        <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-black/45">{product.brand}</p>
         <p className="mt-1 text-sm text-black/70">${product.price}</p>
         <AddToCartButton slug={product.slug} name={product.name} price={product.price} image={product.image} />
       </div>
