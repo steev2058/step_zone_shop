@@ -11,9 +11,14 @@ export default function HomePage() {
   const { t, lang } = useI18n();
   const { items, remove, clear } = useCart();
 
-  const [maxPrice, setMaxPrice] = useState(120);
+  const [maxPrice, setMaxPrice] = useState(220);
   const [size, setSize] = useState('all');
   const [onlyNew, setOnlyNew] = useState(false);
+  const [category, setCategory] = useState('All Products');
+  const [under100, setUnder100] = useState(false);
+  const [r100_150, setR100_150] = useState(false);
+  const [r150_200, setR150_200] = useState(false);
+  const [over200, setOver200] = useState(false);
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
@@ -23,8 +28,19 @@ export default function HomePage() {
     if (p.price > maxPrice) return false;
     if (onlyNew && !p.isNew) return false;
     if (size !== 'all' && !(p.sizes || []).includes(Number(size))) return false;
+    if (category !== 'All Products' && p.category !== category) return false;
+
+    const ranges = [under100, r100_150, r150_200, over200];
+    if (ranges.some(Boolean)) {
+      const inRange =
+        (under100 && p.price < 100) ||
+        (r100_150 && p.price >= 100 && p.price <= 150) ||
+        (r150_200 && p.price > 150 && p.price <= 200) ||
+        (over200 && p.price > 200);
+      if (!inRange) return false;
+    }
     return true;
-  }), [maxPrice, onlyNew, size]);
+  }), [maxPrice, onlyNew, size, category, under100, r100_150, r150_200, over200]);
 
   const newItems = products.filter((p) => p.isNew);
   const total = items.reduce((a, b) => a + b.price * b.qty, 0);
@@ -84,18 +100,42 @@ export default function HomePage() {
       </section>
 
       <section id="shop" className="bg-white py-12">
-        <div className="container-shell">
-          <div className="card mb-8 p-5">
-            <div className="mb-4 text-sm font-bold uppercase tracking-wide">{t('filter')}</div>
-            <div className="grid gap-4 md:grid-cols-3">
-              <label className="text-sm">{t('maxPrice')}: ${maxPrice}<input type="range" min={40} max={140} value={maxPrice} onChange={(e) => setMaxPrice(Number(e.target.value))} className="mt-2 w-full" /></label>
-              <label className="text-sm">{t('size')}<select value={size} onChange={(e) => setSize(e.target.value)} className="mt-2 w-full rounded-lg border border-black/20 p-2"><option value="all">All</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option></select></label>
-              <label className="mt-7 inline-flex items-center gap-2 text-sm"><input type="checkbox" checked={onlyNew} onChange={(e) => setOnlyNew(e.target.checked)} /> {t('onlyNew')}</label>
+        <div className="container-shell grid gap-8 lg:grid-cols-[260px_1fr]">
+          <aside className="space-y-6">
+            <div>
+              <h3 className="mb-2 text-sm font-bold">Categories</h3>
+              <div className="space-y-1 text-sm">
+                {['All Products','Running','Sneakers','Basketball','Casual','Boots'].map((c)=> (
+                  <button key={c} onClick={()=>setCategory(c)} className={`block w-full rounded-lg px-3 py-2 text-left ${category===c?'bg-amber-100 font-semibold':'hover:bg-black/5'}`}>{c}</button>
+                ))}
+              </div>
             </div>
-          </div>
 
-          <div className="grid grid-cols-2 gap-4 xl:grid-cols-4">
-            {filtered.map((p) => <ProductCard key={p.slug} product={p} />)}
+            <div>
+              <h3 className="mb-2 text-sm font-bold">Quick Filters</h3>
+              <label className="mb-2 block text-sm"><input type="checkbox" checked={onlyNew} onChange={(e)=>setOnlyNew(e.target.checked)} className="mr-2"/>New Arrivals</label>
+              <label className="mb-2 block text-sm">{t('size')}
+                <select value={size} onChange={(e)=>setSize(e.target.value)} className="mt-1 w-full rounded-lg border border-black/20 p-2"><option value="all">All</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option></select>
+              </label>
+              <label className="block text-sm">{t('maxPrice')}: ${maxPrice}<input type="range" min={40} max={250} value={maxPrice} onChange={(e)=>setMaxPrice(Number(e.target.value))} className="mt-2 w-full"/></label>
+            </div>
+
+            <div>
+              <h3 className="mb-2 text-sm font-bold">Price Range</h3>
+              <label className="mb-1 block text-sm"><input type="checkbox" checked={under100} onChange={(e)=>setUnder100(e.target.checked)} className="mr-2"/>Under $100</label>
+              <label className="mb-1 block text-sm"><input type="checkbox" checked={r100_150} onChange={(e)=>setR100_150(e.target.checked)} className="mr-2"/>$100 - $150</label>
+              <label className="mb-1 block text-sm"><input type="checkbox" checked={r150_200} onChange={(e)=>setR150_200(e.target.checked)} className="mr-2"/>$150 - $200</label>
+              <label className="mb-1 block text-sm"><input type="checkbox" checked={over200} onChange={(e)=>setOver200(e.target.checked)} className="mr-2"/>$200+</label>
+            </div>
+          </aside>
+
+          <div>
+            <div className="mb-4 flex items-center justify-between text-sm">
+              <span>Showing {filtered.length} products</span>
+            </div>
+            <div className="grid grid-cols-2 gap-4 xl:grid-cols-4">
+              {filtered.map((p) => <ProductCard key={p.slug} product={p} />)}
+            </div>
           </div>
         </div>
       </section>
