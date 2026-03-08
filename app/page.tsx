@@ -101,13 +101,18 @@ export default function HomePage() {
 
       <section id="shop" className="bg-white py-12">
         <div className="container-shell grid gap-8 lg:grid-cols-[260px_1fr]">
-          <aside className="space-y-6">
+          <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
             <div>
               <h3 className="mb-2 text-sm font-bold">Categories</h3>
               <div className="space-y-1 text-sm">
-                {['All Products','Running','Sneakers','Basketball','Casual','Boots'].map((c)=> (
-                  <button key={c} onClick={()=>setCategory(c)} className={`block w-full rounded-lg px-3 py-2 text-left ${category===c?'bg-amber-100 font-semibold':'hover:bg-black/5'}`}>{c}</button>
-                ))}
+                {['All Products','Running','Sneakers','Basketball','Casual','Boots'].map((c)=> {
+                  const count = c==='All Products' ? products.length : products.filter(x=>x.category===c).length;
+                  return (
+                    <button key={c} onClick={()=>setCategory(c)} className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-left ${category===c?'bg-amber-100 font-semibold':'hover:bg-black/5'}`}>
+                      <span>{c}</span><span className="text-xs text-black/45">({count})</span>
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
@@ -132,6 +137,7 @@ export default function HomePage() {
           <div>
             <div className="mb-4 flex items-center justify-between text-sm">
               <span>Showing {filtered.length} products</span>
+              <div className="text-xs text-black/50">Sort by: Featured</div>
             </div>
             <div className="grid grid-cols-2 gap-4 xl:grid-cols-4">
               {filtered.map((p) => <ProductCard key={p.slug} product={p} />)}
