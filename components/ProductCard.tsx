@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Product } from '@/data/products';
+import AddToCartButton from './AddToCartButton';
 
 export default function ProductCard({ product }: { product: Product }) {
   return (
@@ -11,7 +12,7 @@ export default function ProductCard({ product }: { product: Product }) {
       <div className="p-4">
         <h3 className="font-semibold">{product.name}</h3>
         <p className="mt-1 text-sm text-black/70">${product.price}</p>
-        <Link href={`/checkout?product=${product.slug}`} className="btn-primary mt-4 w-full">Add to Cart</Link>
+        <AddToCartButton slug={product.slug} name={product.name} price={product.price} image={product.image} />
       </div>
     </article>
   );

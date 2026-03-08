@@ -1,9 +1,16 @@
+'use client';
 import Image from 'next/image';
-import { notFound } from 'next/navigation';
+import { notFound, useParams } from 'next/navigation';
 import { products } from '@/data/products';
+import AddToCartButton from '@/components/AddToCartButton';
+import { useI18n } from '@/components/i18n';
+import { useState } from 'react';
 
-export default function ProductPage({ params }: { params: { slug: string } }) {
+export default function ProductPage() {
+  const params = useParams<{ slug: string }>();
   const product = products.find((p) => p.slug === params.slug);
+  const { t } = useI18n();
+  const [size, setSize] = useState(product?.sizes?.[0] || 42);
   if (!product) return notFound();
 
   return (
@@ -15,11 +22,11 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
         <div>
           <h1 className="text-3xl font-bold">{product.name}</h1>
           <p className="mt-2 text-xl text-black/80">${product.price}</p>
-          <label className="mt-6 block text-sm font-semibold">Size</label>
-          <select className="mt-2 w-full rounded-xl border border-black/20 bg-white p-3">
-            <option>40</option><option>41</option><option>42</option><option>43</option><option>44</option>
+          <label className="mt-6 block text-sm font-semibold">{t('size')}</label>
+          <select value={size} onChange={(e) => setSize(Number(e.target.value))} className="mt-2 w-full rounded-xl border border-black/20 bg-white p-3">
+            {product.sizes.map((s) => <option key={s}>{s}</option>)}
           </select>
-          <a href={`/checkout?product=${product.slug}`} className="btn-primary mt-6 w-full">Add to Cart</a>
+          <AddToCartButton slug={product.slug} name={product.name} price={product.price} image={product.image} size={String(size)} />
         </div>
       </div>
     </main>

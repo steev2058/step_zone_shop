@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="mt-16 bg-brandBlack text-white">
       <div className="container-shell grid gap-8 py-10 md:grid-cols-3">
         <div>
-          <Image src="/stepzone-logo.jpg" alt="STEPZONE" width={160} height={50} />
+          <Image src="/stepzone-logo.png" alt="STEPZONE" width={170} height={52} />
           <p className="mt-3 text-sm text-white/70">Premium sneakers imported from UAE to Syria.</p>
         </div>
         <div>
@@ -21,7 +21,7 @@ export default function Footer() {
         <div>
           <h3 className="mb-3 font-bold">Contact</h3>
           <p className="text-sm text-white/80">Damascus, Syria</p>
-          <p className="text-sm text-white/80">+963 9XX XXX XXX</p>
+          <p className="text-sm text-white/80">+963 957 261 491</p>
           <a href="https://instagram.com" className="text-sm text-brandGold">Instagram</a>
         </div>
       </div>
