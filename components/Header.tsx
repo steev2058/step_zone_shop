@@ -17,7 +17,7 @@ export default function Header() {
 
         <nav className="hidden items-center gap-4 text-sm font-semibold sm:flex">
           <a href="#home" className="hover:text-brandGold transition-colors">{t('home')}</a>
-          <a href="#checkout" className="rounded-lg border border-black/15 px-2 py-1 text-xs">{t('cart')} ({count})</a>
+          <a href="/checkout" className="rounded-lg border border-black/15 px-2 py-1 text-xs">{t('cart')} ({count})</a>
           <LanguageSwitcher />
         </nav>
 
@@ -25,7 +25,7 @@ export default function Header() {
           <button className="rounded-full p-2 hover:bg-black/5" aria-label="Search">⌕</button>
           <button className="rounded-full p-2 hover:bg-black/5" aria-label="Theme">◐</button>
           <button className="rounded-full p-2 hover:bg-black/5" aria-label="Wishlist">♡</button>
-          <a href="#checkout" className="relative rounded-full p-2 hover:bg-black/5" aria-label="Cart">🛍
+          <a href="/checkout" className="relative rounded-full p-2 hover:bg-black/5" aria-label="Cart">🛍
             {count > 0 && <span className="absolute -right-1 -top-1 rounded-full bg-orange-500 px-1.5 text-[10px] font-bold text-white">{count}</span>}
           </a>
         </div>
