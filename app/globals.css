@@ -9,6 +9,11 @@ body { @apply bg-brandGray text-brandBlack font-montserrat antialiased; }
 .btn-primary { @apply inline-flex items-center justify-center rounded-xl bg-brandGold px-5 py-3 text-sm font-bold text-brandBlack transition duration-200 hover:opacity-90 hover:shadow-md; }
 .card { @apply rounded-2xl bg-white shadow-sm ring-1 ring-black/5; }
 
+/* 8/12/16 rhythm */
+.rhythm-8 > * + * { margin-top: 8px; }
+.rhythm-12 > * + * { margin-top: 12px; }
+.rhythm-16 > * + * { margin-top: 16px; }
+
 .fade-up { animation: fadeUp .45s ease-out both; }
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(8px); }

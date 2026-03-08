@@ -78,12 +78,12 @@ export default function HomePage() {
 
   return (
     <main>
-      <section id="shop" className="bg-white py-12">
-        <div className="container-shell grid gap-8 lg:grid-cols-[260px_1fr]">
-          <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
+      <section id="shop" className="bg-white py-8">
+        <div className="container-shell grid gap-4 lg:grid-cols-[260px_1fr]">
+          <aside className="space-y-4 lg:sticky lg:top-24 lg:self-start">
             <div>
               <h3 className="mb-2 text-sm font-bold">Categories</h3>
-              <div className="space-y-1 text-sm">
+              <div className="space-y-2 text-sm">
                 {['All Products','Running','Sneakers','Basketball','Casual','Boots'].map((c)=> {
                   const count = c==='All Products' ? products.length : products.filter(x=>x.category===c).length;
                   return (
@@ -97,7 +97,7 @@ export default function HomePage() {
 
             <div>
               <h3 className="mb-2 text-sm font-bold">Quick Filters</h3>
-              <div className="mb-2 flex gap-2">
+              <div className="mb-3 flex gap-2">
                 <button onClick={()=>setOnlyNew(v=>!v)} className={`rounded-full px-3 py-1 text-xs ${onlyNew?'bg-black text-white':'bg-black/5'}`}>New Arrivals</button>
                 <button onClick={()=>setOnSale(v=>!v)} className={`rounded-full px-3 py-1 text-xs ${onSale?'bg-black text-white':'bg-black/5'}`}>On Sale</button>
               </div>
@@ -117,7 +117,7 @@ export default function HomePage() {
           </aside>
 
           <div>
-            <div className="mb-4 flex items-center justify-between text-sm">
+            <div className="mb-3 flex items-center justify-between text-sm">
               <span>Showing {filtered.length} products</span>
               <label className="text-xs text-black/60">Sort by:
                 <select value={sortBy} onChange={(e)=>setSortBy(e.target.value)} className="ml-2 rounded-md border border-black/15 px-2 py-1 text-xs">
@@ -128,7 +128,7 @@ export default function HomePage() {
                 </select>
               </label>
             </div>
-            <div className="grid grid-cols-2 gap-4 xl:grid-cols-4">
+            <div className="grid grid-cols-2 gap-3 md:gap-4 xl:grid-cols-4">
               {filtered.map((p) => <ProductCard key={p.slug} product={p} />)}
             </div>
           </div>
