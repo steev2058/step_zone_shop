@@ -12,16 +12,16 @@ export default function ProductCard({ product }: { product: Product }) {
             {product.tag}
           </span>
         )}
-        <Image src={product.image} alt={product.name} width={900} height={700} className="h-44 w-full object-cover transition duration-500 group-hover:scale-[1.03] sm:h-52" loading="lazy" />
+        <Image src={product.image} alt={product.name} width={900} height={900} className="aspect-square w-full object-cover transition duration-500 group-hover:scale-[1.03]" loading="lazy" />
       </Link>
 
-      <div className="p-3">
+      <div className="p-3.5">
         <div className="mb-1 flex items-center justify-between text-xs text-black/55">
           <span>{product.category}</span>
           <span>⭐ {product.rating}</span>
         </div>
 
-        <h3 className="line-clamp-1 text-[22px] leading-tight font-bold tracking-tight">{product.name}</h3>
+        <h3 className="line-clamp-1 text-[18px] leading-tight font-bold tracking-tight">{product.name}</h3>
 
         <div className="mt-1 flex items-center gap-2 text-sm">
           <span className="font-bold">${product.price}</span>
