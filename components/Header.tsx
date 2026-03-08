@@ -12,7 +12,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 border-b border-black/10 bg-white/95 backdrop-blur">
       <div className="container-shell flex h-16 items-center justify-between gap-2">
         <a href="#home" className="flex items-center gap-2">
-          <Image src="/stepzone-logo.png" alt="STEPZONE" width={132} height={40} priority />
+          <Image src="/stepzone-logo.png" alt="STEPZONE" width={96} height={30} priority />
         </a>
 
         <nav className="hidden items-center gap-4 text-sm font-semibold sm:flex">
