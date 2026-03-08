@@ -1,10 +1,10 @@
 'use client';
-import Image from 'next/image';
 import { notFound, useParams } from 'next/navigation';
 import { products } from '@/data/products';
 import AddToCartButton from '@/components/AddToCartButton';
 import { useI18n } from '@/components/i18n';
 import { useState } from 'react';
+import ProductGallery from '@/components/ProductGallery';
 
 export default function ProductPage() {
   const params = useParams<{ slug: string }>();
@@ -16,9 +16,7 @@ export default function ProductPage() {
   return (
     <main className="container-shell py-10">
       <div className="grid gap-8 md:grid-cols-2">
-        <div className="card overflow-hidden">
-          <Image src={product.image} alt={product.name} width={1000} height={800} className="h-full w-full object-cover" priority />
-        </div>
+        <ProductGallery images={product.images?.length ? product.images : [product.image]} alt={product.name} />
         <div>
           <h1 className="text-3xl font-bold">{product.name}</h1>
           <p className="mt-2 text-xl text-black/80">${product.price}</p>
