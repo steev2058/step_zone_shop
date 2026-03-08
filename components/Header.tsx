@@ -13,7 +13,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 border-b border-black/10 bg-white/90 backdrop-blur">
       <div className="container-shell flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
-          <Image src="/stepzone-logo.svg" alt="STEPZONE" width={128} height={30} priority />
+          <Image src="/stepzone-logo.jpg" alt="STEPZONE" width={140} height={44} priority />
         </Link>
         <nav className="flex items-center gap-5 text-sm font-semibold">
           {links.map((link) => (

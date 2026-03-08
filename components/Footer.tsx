@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="mt-16 bg-brandBlack text-white">
       <div className="container-shell grid gap-8 py-10 md:grid-cols-3">
         <div>
-          <Image src="/stepzone-logo.svg" alt="STEPZONE" width={140} height={32} />
+          <Image src="/stepzone-logo.jpg" alt="STEPZONE" width={160} height={50} />
           <p className="mt-3 text-sm text-white/70">Premium sneakers imported from UAE to Syria.</p>
         </div>
         <div>
