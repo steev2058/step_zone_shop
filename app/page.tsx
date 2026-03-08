@@ -52,7 +52,6 @@ export default function HomePage() {
     return out;
   }, [maxPrice, onlyNew, onSale, size, category, under100, r100_150, r150_200, over200, sortBy]);
 
-  const newItems = products.filter((p) => p.isNew);
   const total = items.reduce((a, b) => a + b.price * b.qty, 0);
 
   const placeOrder = async () => {
@@ -79,20 +78,6 @@ export default function HomePage() {
 
   return (
     <main>
-      <section id="home" className="container-shell py-12">
-        <div className="mb-6 flex items-center justify-between">
-          <h2 className="text-3xl font-extrabold tracking-tight">{t('newCollection')}</h2>
-        </div>
-        <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-          {newItems.map((p) => (
-            <a key={p.slug} href={`#shop`} className="group card overflow-hidden">
-              <img src={p.image} alt={p.name} className="h-36 w-full object-cover transition duration-500 group-hover:scale-105 md:h-48" loading="lazy" />
-              <div className="p-3"><div className="text-sm font-semibold">{p.name}</div><div className="text-xs text-black/60">${p.price}</div></div>
-            </a>
-          ))}
-        </div>
-      </section>
-
       <section id="shop" className="bg-white py-12">
         <div className="container-shell grid gap-8 lg:grid-cols-[260px_1fr]">
           <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
